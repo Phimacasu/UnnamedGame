@@ -5,17 +5,7 @@ using UnityEngine;
 public class CameraAnimationController : MonoBehaviour
 {
     // Reference to the main camera
-    public Transform mainCamera;
-
-    // Destination position for the camera (X, Y, Z)
-    public float cameraDestinationX;
-    public float cameraDestinationY;
-    public float cameraDestinationZ;
-
-    // Destination rotation for the camera (X, Y, Z)
-    public float cameraRotationX;
-    public float cameraRotationY;
-    public float cameraRotationZ;
+    public Animation cameraAnimation;
 
     // Flag to track if the player is within interaction range
     private bool isPlayerInRange = false;
@@ -44,13 +34,10 @@ public class CameraAnimationController : MonoBehaviour
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             // Trigger animation to move the camera
-            if (mainCamera != null)
+            if (cameraAnimation != null)
             {
-                // Set the camera's position
-                mainCamera.position = new Vector3(2.4f, 6.9f, -51.4f);
-
-                // Set the camera's rotation
-                mainCamera.rotation = Quaternion.Euler(5.921f, -0.518f, -0.419f);
+                // Play the camera animation
+                cameraAnimation.Play("CameraMoveAnimation");
             }
         }
     }

@@ -2227,13 +2227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af4ce54b37f95046a86bc200e1297e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194228}
-  cameraDestinationX: 2.4
-  cameraDestinationY: 6.9
-  cameraDestinationZ: -51.4
-  cameraRotationX: 5.921
-  cameraRotationY: -0.518
-  cameraRotationZ: -0.419
+  cameraAnimation: {fileID: 963194229}
 --- !u!1 &522435407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4807,7 +4801,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 22.413525
+  field of view: 25.274866
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -4849,7 +4843,7 @@ Animation:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: 164abd66f0768c3449e3acdd0807356e, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 164abd66f0768c3449e3acdd0807356e, type: 2}
   m_WrapMode: 0
@@ -4895,8 +4889,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.03, y: 0.78, z: 1}
-  m_Center: {x: -4.71, y: 0.02, z: 0}
+  m_Size: {x: 10.03, y: 0.94, z: 1}
+  m_Center: {x: -4.71, y: 0.12, z: 0}
 --- !u!23 &1033795536
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5302,7 +5296,6 @@ GameObject:
   - component: {fileID: 1089913504}
   - component: {fileID: 1089913503}
   - component: {fileID: 1089913502}
-  - component: {fileID: 1089913501}
   m_Layer: 0
   m_Name: Curtain (1)
   m_TagString: Untagged
@@ -5310,19 +5303,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1089913501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089913500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92de3436b86c3444c8e07d2ac78b0191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbSpeed: 3
 --- !u!65 &1089913502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11115,11 +11095,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
