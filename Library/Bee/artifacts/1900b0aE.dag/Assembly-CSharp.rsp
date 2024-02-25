@@ -361,6 +361,8 @@
 "Assets/Ladder.cs"
 "Assets/NewBehaviourScript.cs"
 "Assets/PassablePlatform.cs"
+"Assets/StoryScript.cs"
+"Assets/StorySystem.cs"
 -langversion:9.0
 
 /deterministic

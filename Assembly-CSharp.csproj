@@ -65,6 +65,8 @@
     <Compile Include="Assets\CharacterMovement3D.cs" />
     <Compile Include="Assets\CameraAnimationController.cs" />
     <Compile Include="Assets\PassablePlatform.cs" />
+    <Compile Include="Assets\StoryScript.cs" />
+    <Compile Include="Assets\StorySystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
