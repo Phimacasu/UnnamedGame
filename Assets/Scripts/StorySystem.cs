@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class StorySystem : MonoBehaviour
 {
+    // Represents a node in a story
     public class StoryNode
     {
         public string _text;
         public List<StoryOption> _options;
     }
 
+    // Represents a story option
     public class StoryOption
     {
         public string _optionText;
@@ -26,11 +28,15 @@ public class StorySystem : MonoBehaviour
     private StoryNode _currentNode;
     public StoryNode _initialNode;
 
+    // Initializes the dialogue UI by setting it to inactive
     public void Start()
     {
         _dialogueUI.SetActive(false);
     }
 
+    /*  This method is triggered when a collider enters the trigger zone
+        It checks if the collider belongs to the player and activates the dialogue UI   
+        It then loads the initial story node    */
     private void OnTriggerEnter(Collider p_other)
     {
         if(p_other.CompareTag("Player"))
@@ -40,6 +46,7 @@ public class StorySystem : MonoBehaviour
         }
     }
 
+    // Loads a story node into the StorySystem
     public void LoadStoryNode(StoryNode p_node)
     {
         _currentNode = p_node;
@@ -57,6 +64,8 @@ public class StorySystem : MonoBehaviour
         }
     }
 
+    /*  This method is called when an options is chosen in the story system
+        It takes the index of the chosen option and loads the next story node based on that option  */
     public void ChooseOption(int p_optionIndex)
     {
         StoryNode nextNode = _currentNode._options[p_optionIndex]._nextNode;

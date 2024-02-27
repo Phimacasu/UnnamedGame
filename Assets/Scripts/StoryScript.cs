@@ -12,6 +12,9 @@ public class StoryScript : MonoBehaviour
 {
     public StoryNode _initialNode;
 
+    /*  This code snippet is a method named Start() within the StoryScript class
+        It is called when the script starts running 
+        The method initializes the _initialNode variable of type StoryNode with a new instance of StoryNode */
     void Start()
     {
         _initialNode = new StoryNode
@@ -25,6 +28,7 @@ public class StoryScript : MonoBehaviour
         };
     }
 
+    // Creates a path A in the story
     private StoryNode CreatePathA()
     {
         return new StoryNode
@@ -38,6 +42,7 @@ public class StoryScript : MonoBehaviour
         };
     }
 
+    // Creates a path B in the story
     private StoryNode CreatePathB()
     {
         return new StoryNode
@@ -51,6 +56,7 @@ public class StoryScript : MonoBehaviour
         };
     }
 
+    // Creates a path end in the story
     private StoryNode CreatePathEnd()
     {
         return new StoryNode
