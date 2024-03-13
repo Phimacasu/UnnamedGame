@@ -7,6 +7,7 @@ public class CameraAnimationController : MonoBehaviour
     // Reference to the main camera
     public Animation cameraAnimation;
     public Animation playerAnimation;
+    public Animation doorAnimation;
 
     // Flag to track if the player is within interaction range
     private bool isPlayerInRange = false;
@@ -40,6 +41,7 @@ public class CameraAnimationController : MonoBehaviour
                 // Play the camera animation
                 cameraAnimation.Play("CameraMoveAnimation");
                 playerAnimation.Play("PlayerTransitionAnimation");
+                doorAnimation.Play("Level1Door");
             }
         }
     }
