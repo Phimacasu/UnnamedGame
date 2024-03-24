@@ -2,60 +2,75 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
-    public float climbSpeed = 3f;
-    public float idleDrag = 5f; // Drag when not climbing
+    public float _climbSpeed;
+    public float _idleDrag; // Drag when not climbing
 
-    private bool isClimbing;
-    private Rigidbody playerRigidbody;
+    private Rigidbody _playerRigidbody;
+    private Vector3 _climbForce;
+    private bool _isClimbing;
+    private float _verticalInput;
 
-    private void OnTriggerEnter(Collider other)
+    void Start ()
     {
-        if (other.CompareTag("Player"))
+        _climbSpeed = 6f;
+        _idleDrag = 5f;
+    }
+
+    private void OnTriggerEnter(Collider p_other)
+    {
+        if (p_other.CompareTag("Player"))
         {
-            isClimbing = true;
-            playerRigidbody = other.GetComponent<Rigidbody>();
-            if (playerRigidbody != null)
+            _isClimbing = true;
+            _playerRigidbody = p_other.GetComponent<Rigidbody>();
+            if (_playerRigidbody != null)
             {
-                playerRigidbody.useGravity = false; // Disable gravity while climbing
-                playerRigidbody.drag = idleDrag; // Apply idle drag
+                _playerRigidbody.useGravity = false; // Disable gravity while climbing
+                _playerRigidbody.drag = _idleDrag; // Apply idle drag
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider p_other)
     {
-        if (other.CompareTag("Player"))
+        if (p_other.CompareTag("Player"))
         {
-            isClimbing = false;
-            if (playerRigidbody != null)
+            _isClimbing = false;
+            if (_playerRigidbody != null)
             {
-                playerRigidbody.useGravity = true; // Enable gravity when not climbing
-                playerRigidbody.drag = 0f; // Reset drag
-                playerRigidbody = null;
+                _playerRigidbody.useGravity = true; // Enable gravity when not climbing
+                _playerRigidbody.drag = 0f; // Reset drag
+                _playerRigidbody = null;
             }
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider p_other)
     {
-        if (isClimbing)
+        if (_isClimbing)
         {
-            float verticalInput = Input.GetAxis("Vertical");
+            _verticalInput = GetVerticalInput();
 
-            if (playerRigidbody != null)
+            if (_playerRigidbody == null)
             {
-                // Calculate climb velocity
-                Vector3 climbVelocity = new Vector3(0f, verticalInput * climbSpeed, 0f);
+                return;
+            }
 
-                // Apply climb force
-                playerRigidbody.velocity = climbVelocity;
+            // Calculate climb force
+            _climbForce = new Vector3(0f, _verticalInput * _climbSpeed, 0f);
 
-                // If not moving vertically, reduce the vertical velocity to prevent falling
-                if (verticalInput == 0f)
-                {
-                    playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, 0f, playerRigidbody.velocity.z);
-                }
+            // Apply climb force
+            _playerRigidbody.AddForce(_climbForce);
+
+            // If not moving vertically, reduce the vertical velocity to prevent falling
+            if (_verticalInput == 0f)
+            {
+                _playerRigidbody.velocity = new Vector3(_playerRigidbody.velocity.x, 0f, _playerRigidbody.velocity.z);
             }
         }
+    }
+
+    private float GetVerticalInput()
+    {
+        return Input.GetAxis("Vertical");
     }
 }

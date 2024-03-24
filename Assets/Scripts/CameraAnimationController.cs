@@ -5,44 +5,49 @@ using UnityEngine;
 public class CameraAnimationController : MonoBehaviour
 {
     // Reference to the main camera
-    public Animation cameraAnimation;
-    public Animation playerAnimation;
-    public Animation doorAnimation;
+    public Animation _cameraAnimation;
+    public Animation _playerAnimation;
+    public Animation _doorAnimation;
 
     // Flag to track if the player is within interaction range
-    private bool isPlayerInRange = false;
+    private bool _isPlayerInRange = false;
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider p_other)
     {
         // Check if the collider entering the trigger is the player
-        if (other.CompareTag("Player"))
+        if (p_other.CompareTag("Player"))
         {
-            isPlayerInRange = true;
+            _isPlayerInRange = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider p_other)
     {
         // Check if the collider exiting the trigger is the player
-        if (other.CompareTag("Player"))
+        if (p_other.CompareTag("Player"))
         {
-            isPlayerInRange = false;
+            _isPlayerInRange = false;
         }
     }
 
     void Update()
     {
         // Check for player input and proximity
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (_isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            // Trigger animation to move the camera
-            if (cameraAnimation != null)
-            {
-                // Play the camera animation
-                cameraAnimation.Play("CameraMoveAnimation");
-                playerAnimation.Play("PlayerTransitionAnimation");
-                doorAnimation.Play("Level1Door");
-            }
+            PlayAnimations();
+        }
+    }
+
+    private void PlayAnimations()
+    {
+        // Trigger animation to move the camera
+        if (_cameraAnimation != null)
+        {
+            // Play the camera animation
+            _cameraAnimation.Play("CameraMoveAnimation");
+            _playerAnimation.Play("PlayerTransitionAnimation");
+            _doorAnimation.Play("Level1Door");
         }
     }
 }

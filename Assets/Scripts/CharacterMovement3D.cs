@@ -2,54 +2,51 @@ using UnityEngine;
 
 public class CharacterMovement3D : MonoBehaviour
 {
-    public float speed = 5f;
-    public float jumpForce = 10f;
-    public float cameraDistanceX = 1f;
-    public float cameraDistanceZ = 2f;
-    public float cameraDistanceY = -9f;
-    public float cameraLerpSpeed = 10f;
+    public float _speed = 5f;
+    public float _jumpForce = 5f;
+    public float _cameraDistanceX = 1f;
+    public float _cameraDistanceZ = 2f;
+    public float _cameraDistanceY = -9f;
+    public float _cameraLerpSpeed = 10f;
 
-    private Rigidbody rb;
-    private Camera mainCamera;
-    private Animation playerAnimation;
+    private Rigidbody _rb;
+    private Camera _mainCamera;
+    private Vector3 _cameraRight;
+    private Vector3 _movement;
+    private Vector3 _cameraTargetPosition;
+    private bool _isGrounded;
+    private float _moveInputHorizontal;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
-        playerAnimation = GetComponent<Animation>();
+        _rb = GetComponent<Rigidbody>();
+        _mainCamera = Camera.main;
     }
 
     void Update()
     {
         // Check if the character is grounded
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.8f);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.8f);
 
-        // Get the input direction relative to the camera's orientation
-        Vector3 cameraForward = mainCamera.transform.forward;
-        cameraForward.y = 0f; // Ensure the direction is horizontal
-        cameraForward.Normalize();
-
-        Vector3 cameraRight = mainCamera.transform.right;
-        cameraRight.y = 0f; // Ensure the direction is horizontal
-        cameraRight.Normalize();
+        _cameraRight = _mainCamera.transform.right;
+        _cameraRight.y = 0f; // Ensure the direction is horizontal
+        _cameraRight.Normalize();
 
         // Ignore vertical input axis
-        float moveInputHorizontal = Input.GetAxis("Horizontal");
+        _moveInputHorizontal = Input.GetAxis("Horizontal");
 
         // Calculate the movement direction relative to the camera
-        Vector3 movement = cameraRight * moveInputHorizontal * speed * Time.deltaTime;
-        transform.Translate(movement);
+        _movement = _cameraRight * _moveInputHorizontal * _speed * Time.deltaTime;
+        transform.Translate(_movement);
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
- 
-            
-            Vector3 cameraTargetPosition = transform.position + new Vector3(0f, 1f, -12f);
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, cameraTargetPosition, Time.deltaTime * cameraLerpSpeed);
+     
+        _cameraTargetPosition = transform.position + new Vector3(0f, 1f, -12f);
+        _mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, _cameraTargetPosition, Time.deltaTime * _cameraLerpSpeed);
     }
     }
 

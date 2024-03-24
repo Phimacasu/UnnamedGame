@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
-    public static bool gamePaused = false;
+    private static bool _gamePaused = false;
+    public static bool IsGamePaused()
+    {
+        return _gamePaused;
+    }
 
-    public GameObject pauseGame;
+    public GameObject _pauseGame;
 
+    [SerializeField]
+    private KeyCode _pauseKey = KeyCode.Escape;
+
+    [SerializeField]
+    private string _exitSceneName = "OtherStart";
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(_pauseKey))
         {
-            if (gamePaused)
+            if (_gamePaused)
             {
                 ResumeGame();
             }
@@ -23,26 +30,25 @@ public class PauseGame : MonoBehaviour
                 Paused();
             }
         }
+        Time.timeScale = !_gamePaused ? 1f : 0f;
     }
 
     public void ResumeGame()
     {
-        pauseGame.SetActive(false);
-        Time.timeScale = 1f;
-        gamePaused = false;
+        _pauseGame.SetActive(false);
+        _gamePaused = false;
     }
 
     void Paused()
     {
-        pauseGame.SetActive(true);
-        Time.timeScale = 0f;
-        gamePaused = true;
+        _pauseGame.SetActive(true);
+        _gamePaused = true;
     }
 
     public void ExitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("OtherStart");
-        Debug.Log("Exit Game");
+        SceneManager.LoadScene(_exitSceneName);
+        Debug.LogFormat("Exit Game: {0}", SceneManager.GetActiveScene().name);
     }
 }

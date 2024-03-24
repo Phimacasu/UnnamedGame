@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class PassablePlatform : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private Collider _collider;
+
+    private void Awake()
     {
-        if (other.CompareTag("Player"))
+        _collider = GetComponent<Collider>();
+    }
+
+    private void OnTriggerEnter(Collider p_other)
+    {
+        if (p_other.CompareTag("Player"))
         {
             Debug.Log("Player entered trigger zone.");
-            // Make the platform non-solid when the player enters from below
-            GetComponent<Collider>().isTrigger = true;
+            SetPlatformPassable(true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider p_other)
     {
-        if (other.CompareTag("Player"))
+        if (p_other.CompareTag("Player"))
         {
             Debug.Log("Player exited trigger zone.");
-            // Make the platform solid again when the player exits
-            GetComponent<Collider>().isTrigger = false;
+            SetPlatformPassable(false);
         }
+    }
+
+    private void SetPlatformPassable(bool passable)
+    {
+        _collider.isTrigger = passable;
     }
 }

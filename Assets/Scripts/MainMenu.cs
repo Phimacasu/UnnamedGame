@@ -1,24 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame()
+    private const string _SampleSceneString = "SampleScene";
+    private const string _SettingsMenuString = "SettingsMenu";
+    private const string _MainMenuString = "MainMenu";
+
+    public void LoadScene(string p_sceneName)
     {
-        SceneManager.LoadScene("SampleScene");
+        if (SceneManager.GetSceneByName(p_sceneName) != null)
+        {
+            SceneManager.LoadSceneAsync(p_sceneName);
+        }
+        else
+        {
+            Debug.LogError("Scene '" + p_sceneName + "' does not exist.");
+        }
+    }
+
+    public void PlayGame()
+    {
+        LoadScene(_SampleSceneString);
     }
 
     public void GoToSettingsMenu()
     {
-        SceneManager.LoadScene("SettingsMenu");
+        LoadScene(_SettingsMenuString);
     }
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        LoadScene(_MainMenuString);
     }
+
     public void QuitGame()
     {
         Application.Quit();
