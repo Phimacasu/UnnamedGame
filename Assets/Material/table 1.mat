@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lamp color
+  m_Name: table 1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: 2aca325d194ec514897f3b17b4681e31, type: 2}
+  m_Parent: {fileID: 2100000, guid: 7d7f5fda53f2d7c4d85b06a182327840, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,13 +22,8 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
