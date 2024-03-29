@@ -21,7 +21,7 @@ public class StorySystem : MonoBehaviour
     {
         _Button1.gameObject.SetActive(false);
         _Button2.gameObject.SetActive(false);
-        _animation = GetComponent<Animation>();
+        _animation = GameObject.Find("Player").GetComponent<Animation>();
     }
 
     public void SetClip (AnimationClip p_clip, int p_clipNumber)
@@ -48,9 +48,7 @@ public class StorySystem : MonoBehaviour
             if (_clip1 != null)
             {
                 _animation.clip = _clip1;
-                _animation.AddClip(_clip1, _clip1.name);
-                _animation.Play(_clip1.name);
-                _animation.Play("Choice1A");
+                _animation.Play();
             }
             else
             {
@@ -62,9 +60,7 @@ public class StorySystem : MonoBehaviour
             if (_clip2 != null)
             {
                 _animation.clip = _clip2;
-                _animation.AddClip(_clip2, _clip2.name);
-                _animation.Play(_clip2.name);
-                _animation.Play("Choice1B");
+                _animation.Play();
             }
             else
             {
