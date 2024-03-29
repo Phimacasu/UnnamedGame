@@ -15,7 +15,7 @@ public class CharacterInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider p_other)
     {
-        if (p_other.CompareTag("Interactable"))
+        if (p_other.CompareTag("Interactable1stStage"))
         {
             _storySystem.SetClip(_choice.GetClip1(), 1);
             _storySystem.SetClip(_choice.GetClip2(), 2);
@@ -26,7 +26,7 @@ public class CharacterInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider p_other)
     {
-        if (p_other.CompareTag("Interactable"))
+        if (p_other.CompareTag("Interactable1stStage"))
         {
             _storySystem.SetDefaultClips();
             _storySystem.SetButtonVisibility(_storySystem._Button1, false);

@@ -50,6 +50,7 @@ public class StorySystem : MonoBehaviour
                 _animation.clip = _clip1;
                 _animation.AddClip(_clip1, _clip1.name);
                 _animation.Play(_clip1.name);
+                _animation.Play("Choice1A");
             }
             else
             {
@@ -63,6 +64,7 @@ public class StorySystem : MonoBehaviour
                 _animation.clip = _clip2;
                 _animation.AddClip(_clip2, _clip2.name);
                 _animation.Play(_clip2.name);
+                _animation.Play("Choice1B");
             }
             else
             {
